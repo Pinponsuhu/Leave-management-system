@@ -14,6 +14,20 @@
     body{
         font-family: 'Ubuntu', sans-serif;
     }
+    *::-webkit-scrollbar {
+    width: 7px;
+}
+    *::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: rgb(255, 200, 82);
+}
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+    background: #d6900d;
+}
 </style>
 </head>
 <body class="flex w-screen h-screen bg-amber-50 bg-opacity-60">
@@ -23,14 +37,14 @@
                 <img src="{{ asset('images/lasu.png') }}" class="w-12 h-12" alt="">
                 <h1 class="text-2xl font-bold">Lv-MS</h1>
             </div>
-            <i class="fa fa-times text-2xl" onclick="close_nav()"></i>
+            <i class="fa fa-times text-2xl md:hidden" onclick="close_nav()"></i>
         </div>
 
         <div class="mt-4">
             <ul>
                 <li class="gap-x-2 text-lg font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-10 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-chart-pie"></i></div><a href="/">Dashboard</a></li>
                 <li class="gap-x-2 text-lg font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-user"></i></div><a href="/apply">Apply Leave</a></li>
-                <li class="gap-x-2 text-lg font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-user-clock"></i></div><a href="/user/leave/history">Leave History</a></li>
+                <li class="gap-x-2 text-lg font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-user-clock"></i></div><a href="/user/leave/history/{{ Crypt::encrypt('All') }}">Leave History</a></li>
                 <li class="gap-x-2 text-lg font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-user-cog"></i></div><a href="/setting">Settings</a></li>
             </ul>
         </div>

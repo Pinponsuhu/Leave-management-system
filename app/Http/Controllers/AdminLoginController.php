@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class AdminLoginController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('admin_guest');
+    }
     //Admin Login page
     public function show(){
         return view('admin.login');

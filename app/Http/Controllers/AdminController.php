@@ -192,6 +192,16 @@ class AdminController extends Controller
         auth()->logout();
         return redirect('/admin/login');
     }
+    //Show all leaves
+    public function all_leaves($id){
+        $status = Crypt::decrypt($id);
+        if($status == 'All'){
+            $leaves = Leave::latest()->paginate(15);
+        }else{
+            $leaves = Leave::latest()->where('status',$status)->paginate(15);
+        }
+        return view('admin.all-leave',['leaves'=> $leaves,'status'=> $status]);
+    }
     //logout logic
     public function logout(){
         auth()->guard('admin')->logout();

@@ -93,9 +93,14 @@ class UserController extends Controller
         return view('users.user-profile-picture');
     }
     //All leave history of a user
-    public function all_history(){
-        $leaves = Leave::latest()->where('user_id',auth()->user()->id)->paginate(1);
-        return view('users.leave-history',['leaves'=> $leaves]);
+    public function all_history($id){
+        $status = Crypt::decrypt($id);
+        if($status == 'All'){
+            $leaves = Leave::latest()->where('user_id',auth()->user()->id)->paginate(15);
+        }else{
+            $leaves = Leave::latest()->where('user_id',auth()->user()->id)->where('status',$status)->paginate(15);
+        }
+        return view('users.leave-history',['leaves'=> $leaves,'status'=> $status]);
     }
     //Leave details
     public function leave_details($id){

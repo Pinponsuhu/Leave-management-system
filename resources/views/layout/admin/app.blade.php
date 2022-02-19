@@ -14,6 +14,20 @@
     body{
         font-family: 'Ubuntu', sans-serif;
     }
+    *::-webkit-scrollbar {
+    width: 7px;
+}
+    *::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: rgb(255, 200, 82);
+}
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+    background: #d6900d;
+}
 </style>
 </head>
 <body class="flex h-screen bg-amber-50 bg-opacity-60">
@@ -23,7 +37,7 @@
                 <img src="{{ asset('images/lasu.png') }}" class="w-12 h-12" alt="">
                 <h1 class="text-2xl font-bold">Lv-MS</h1>
             </div>
-            <i class="fa fa-times text-2xl" onclick="close_nav()"></i>
+            <i class="fa fa-times text-2xl md:hidden" onclick="close_nav()"></i>
         </div>
 
         <div class="mt-3">
@@ -37,6 +51,7 @@
                         <li class="py-1.5 text-sm font-bold my-1"><a href="/new/admin">Admin</a></li>
                     @endif
                 </ol>
+                <li class="gap-x-2 text-md font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-envelope-open"></i></div><a href="/admin/leave/history/{{ Crypt::encrypt('All') }}">All Leaves</a></li>
                 <li class="gap-x-2 text-md font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-envelope"></i></div><a href="/admin/leave/request">Leave Request</a></li>
                 <li class="gap-x-2 text-md font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-user-check"></i></div><a href="/admin/active/leaves">Active leave</a></li>
                 <li class="gap-x-2 text-md font-medium hover:text-amber-400 flex items-center mb-2 p-3 bg-opacity-25 rounded-md hover:bg-amber-50"><div class="w-10 h-10 bg-white text-amber-300 rounded-full flex justify-center items-center"><i class="fa fa-user-cog"></i></div><a href="/admin/setting">Settings</a></li>
