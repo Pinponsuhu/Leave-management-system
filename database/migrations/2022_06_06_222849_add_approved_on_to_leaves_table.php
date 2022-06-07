@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('leave_attachments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('leave_id');
-            $table->string('attachment');
-            $table->timestamps();
-            $table->foreign('leave_id')->references('id')->on('leaves')->onDelete('cascade');
+        Schema::table('leaves', function (Blueprint $table) {
+            $table->date('approved_on')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leave_attachments');
+        Schema::table('leaves', function (Blueprint $table) {
+            $table->dropColumn('approved_on');
+        });
     }
 };

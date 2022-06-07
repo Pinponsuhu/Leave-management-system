@@ -17,8 +17,12 @@ class Admins
     public function handle(Request $request, Closure $next)
     {
         if(auth()->guard('admin')->check() == true){
+            // dd(auth()->guard('admin')->check());
             return $next($request);
         }
+        // dd(auth()->guard('admin')->check());
+
         return redirect('/admin/login');
+
     }
 }

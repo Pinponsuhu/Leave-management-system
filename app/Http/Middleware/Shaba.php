@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminGuest
+class Shaba
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,6 @@ class AdminGuest
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->guard('admin')->check() == false){
-            // dd(auth()->guard('admin')->check());
-            return $next($request);
-        }
-        return redirect('/admin/dashboard');
-
-
+        return $next($request);
     }
 }

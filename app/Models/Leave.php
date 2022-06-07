@@ -13,7 +13,7 @@ class Leave extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['user_id','status', 'employee_id','leave_type','from','to','approved_by','approved_on','note'];
+    protected $fillable = ['leave_type','marital','school','date_app','designation','level','date_designation','date_last','date_due','date_commence','date_end','details','approved_by','status','user_id'];
 
     public function User(){
         return $this->belongsTo(User::class);

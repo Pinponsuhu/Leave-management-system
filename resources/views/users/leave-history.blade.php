@@ -26,11 +26,11 @@
                 @foreach ($leaves as $leave)
                 <tr>
                     <td class="py-3 px-4 bg-gray-100"><a href="/user/leave/details/{{ Crypt::encrypt($leave->id) }}" class="underline">{{ $leave->leave_type }} Leave</a></td>
-                    <td class="py-3 px-4 bg-gray-50">{{ $leave->from }}</td>
-                    <td class="py-3 px-4 bg-gray-100">{{ $leave->to }}</td>
+                    <td class="py-3 px-4 bg-gray-50">{{ $leave->date_commence }}</td>
+                    <td class="py-3 px-4 bg-gray-100">{{ $leave->date_end }}</td>
                     <td class="py-3 px-4 bg-gray-50">@php
-                        $from = $leave->from;
-                        $to = $leave->to;
+                        $from = $leave->date_commence;
+                        $to = $leave->date_end;
                         $date1 = new DateTime($from);
                         $date2 = new DateTime($to);
                         $interval = $date1->diff($date2);

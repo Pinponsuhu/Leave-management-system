@@ -29,31 +29,26 @@ class UserController extends Controller
     }
     //Logic for storing the input
     public function store_apply(Request $request){
-        $request->validate([
+        // dd($request->all());
+        $leave = $request->validate([
             'leave_type' => 'required',
-            'from' => 'required|date',
-            'to' => 'required|date',
-            'attachments.*' => 'mimes:png,jpg,jpeg,html,txt,xls,pdf,docx,doc'
+            'marital' => 'required',
+            'school' => 'required',
+            'date_app' => 'required|date',
+            'designation' => 'required',
+            'level' => 'required',
+            'date_designation' => 'required|date',
+            'date_last' => 'required|date',
+            'date_due' => 'required|date',
+            'date_commence' => 'required|date',
+            'date_end' => 'required|date',
+            'details' => 'required',
+            'status' => 'required',
+            'user_id' => 'required'
         ]);
 
-        $apply = new Leave;
-        $apply->status = 'Pending';
-        $apply->employee_id = auth()->user()->employee_id;
-        $apply->user_id = auth()->user()->id;
-        $apply->leave_type = $request->leave_type;
-        $apply->from = $request->from;
-        $apply->to = $request->to;
-        $apply->note = $request->note;
-        $apply->save();
-        $dest = '/public/files';
+        Leave::create($leave);
 
-        foreach($request->file('attachments') as $file){
-            $attach = new LeaveAttachments;
-            $path = $file->store($dest);
-            $attach->leave_id = $apply->id;
-            $attach->attachment = str_replace('public/files/','',$path);
-            $attach->save();
-        }
         return redirect('/');
     }
     //Show User setting option
@@ -115,6 +110,7 @@ class UserController extends Controller
     }
     //Show Page for Editing Leave
     public function show_edit_leave($id){
+        // $leaves = array("Casual","Sick","Study","Maternity","Sabbatical");
         $leave = Leave::find(Crypt::decrypt($id));
         $types = array('Casual','Sick','Study','Maternity','Sabbatical');
         return view('users.edit-leave',['types'=> $types,'leave'=>$leave]);
@@ -122,14 +118,32 @@ class UserController extends Controller
     //Store New leave updates
     public function store_edit_leave(Request $request){
         $request->validate([
-            'from' => 'required|date',
-            'to' => 'required|date',
-            'leave_type' => 'required'
+            'leave_type' => 'required',
+            'marital' => 'required',
+            'school' => 'required',
+            'date_app' => 'required|date',
+            'designation' => 'required',
+            'level' => 'required',
+            'date_designation' => 'required|date',
+            'date_last' => 'required|date',
+            'date_due' => 'required|date',
+            'date_commence' => 'required|date',
+            'date_end' => 'required|date',
+            'details' => 'required',
         ]);
         $leave = Leave::find(Crypt::decrypt($request->id));
         $leave->leave_type = $request->leave_type;
-        $leave->from = $request->from;
-        $leave->to = $request->to;
+        $leave->marital = $request->marital;
+        $leave->school = $request->school;
+        $leave->date_app = $request->date_app;
+        $leave->designation = $request->designation;
+        $leave->level = $request->level;
+        $leave->date_designation = $request->date_designation;
+        $leave->date_last = $request->date_last;
+        $leave->date_due = $request->date_due;
+        $leave->date_commence = $request->date_commence;
+        $leave->date_end = $request->date_end;
+        $leave->details = $request->details;
         $leave->save();
 
         return redirect('/');

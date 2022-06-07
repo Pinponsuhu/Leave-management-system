@@ -20,13 +20,14 @@ class AdminController extends Controller
         $users = Leave::get();
         $active_count = 0;
         $dateee = Carbon::now()->format('Y-m-d');
-        $active_count = Leave::where('from', '<=', $dateee)
-        ->where('to', '>=', $dateee)
+        $active_count = Leave::where('date_commence', '<=', $dateee)
+        ->where('date_end', '>=', $dateee)
         ->where('status','Approved')
         ->count();
         $user_count = User::count();
         $cancel_count = Leave::where('status','Cancelled')->count();
         $pend_count = Leave::where('status','Pending')->count();
+
         return view('admin.dashboard',['user_count'=> $user_count,'cancel_count'=> $cancel_count,'pend_count'=> $pend_count,'active_count'=> $active_count]);
     }
     public function all_employee(){
@@ -126,8 +127,8 @@ class AdminController extends Controller
     //Active leave
     public function active_leave(){
         $dateee = Carbon::now()->format('Y-m-d');
-        $leaves = Leave::where('from', '<=', $dateee)
-        ->where('to', '>=', $dateee)
+        $leaves = Leave::where('date_commence', '<=', $dateee)
+        ->where('date_end', '>=', $dateee)
         ->where('status','Approved')
         ->get();
 

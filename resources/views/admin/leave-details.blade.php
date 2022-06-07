@@ -32,30 +32,52 @@
                     <span class="py-1.5 font-bold rounded-full px-6 text-white bg-red-300">{{ $leave->status }}</span>
                 @endif
                 </div>
-                <div class="flex gap-x-5 mt-1 items-center py-2">
+                <div class="flex gap-x-5 mt-1 items-center py-3">
                     <label class="font-bold text-lg ">From:</label>
-                    <p>{{ $leave->from }}</p>
+                    <p>{{ $leave->date_commence }}</p>
                 </div>
-                <div class="flex gap-x-5 mt-1 items-center py-2">
+                <div class="flex gap-x-5 mt-1 items-center py-3">
                     <label class="font-bold text-lg ">To:</label>
-                    <p>{{ $leave->to }}</p>
+                    <p>{{ $leave->date_end }}</p>
                 </div>
-                <div class="flex gap-x-5 mt-1 items-center py-2">
+                <div class="flex gap-x-5 mt-1 items-center py-3">
+                    <label class="font-bold text-lg ">Grade/Level:</label>
+                    <p>{{ $leave->level }}</p>
+                </div>
+                <div class="flex gap-x-5 mt-1 items-center py-3">
+                    <label class="font-bold text-lg ">Date of appointment to the present designation:</label>
+                    <p>{{ $leave->designation }}</p>
+                </div>
+                <div class="flex gap-x-5 mt-1 items-center py-3">
+                    <label class="font-bold text-lg ">Date Resumed duty from last leave:</label>
+                    <p>{{ $leave->date_last }}</p>
+                </div>
+                <div class="flex gap-x-5 mt-1 items-center py-3">
+                    <label class="font-bold text-lg ">Leave due for current year:</label>
+                    <p>{{ $leave->date_due }}</p>
+                </div>
+                <div class="flex gap-x-5 mt-1 items-center py-3">
+                    <label class="font-bold text-lg ">Date for commencement of leave:</label>
+                    <p>{{ $leave->date_commence }}</p>
+                </div>
+                <div class="flex gap-x-5 mt-1 items-center py-3">
+                    <label class="font-bold text-lg ">Date leave to end:</label>
+                    <p>{{ $leave->date_end }}</p>
+                </div>
+                <div class="flex gap-x-5 mt-1 items-center py-3">
+                    <label class="font-bold text-lg ">Address and Phone number while on leave:</label>
+                    <p>{{ $leave->details }}</p>
+                </div>
+                <div class="flex gap-x-5 mt-1 items-center py-3">
                     <label class="font-bold text-lg ">Created on:</label>
                     <p>{{ $leave->created_at->format("Y-m-d") }}</p>
                 </div>
-                <div class="flex gap-x-5 mt-1 items-center py-2">
-                    <label class="font-bold text-lg ">Approved by:</label>
-                    <p>{{ $leave->approved_by }}</p>
-                </div>
-                <div class="flex gap-x-5 mt-1 items-center py-2">
-                    <label class="font-bold text-lg ">Approved on:</label>
-                    <p>{{ $leave->approved_on }}</p>
-                </div>
-                <div class="flex flex-col gap-x-5 mt-1 py-2">
+                @if ($leave->status != 'Pending')
+                <div class="flex gap-x-5 mt-1 items-center py-3">
                     <label class="font-bold text-lg ">Remark:</label>
                     <p>{{ $leave->remark }}</p>
                 </div>
+                @endif
             </div>
         </div>
     </main>
